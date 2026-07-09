@@ -3,125 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NowySystems | Practical software for real-world operations</title>
-  <meta name="description" content="NowySystems builds focused workflow tools for care coordination, event operations, decision intelligence, and custom web systems." />
+  <title>NowySystems | Systems that turn complexity into clarity</title>
+  <meta name="description" content="NowySystems builds focused workflow software for care, events, decisions, and operations." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="/" aria-label="NowySystems home">
-      <span class="brand-mark">NS</span>
+      <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M13 54V10l29 32V10h9v44L22 22v32z" />
+      </svg>
       <span>NowySystems</span>
     </a>
     <nav class="top-nav" aria-label="Primary navigation">
-      <a href="#products">Products</a>
+      <a href="#work">Work</a>
       <a href="#principles">Principles</a>
-      <a class="nav-cta" href="/solace/">Open Solace</a>
+      <a href="#about">About</a>
+      <a class="nav-cta" href="/solace/">Open Solace <span>→</span></a>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Founder-led product lab</p>
-        <h1>Practical software for real-world operations.</h1>
+        <p class="eyebrow">Focused software. Clear operations.</p>
+        <h1 id="hero-title">Systems that turn complexity into <span>clarity.</span></h1>
         <p class="hero-text">
-          NowySystems builds focused workflow tools for care coordination, event operations,
-          decision intelligence, and custom web systems.
+          NowySystems builds focused workflow software for care, events, decisions, and operations.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="/solace/">Open Solace Demo</a>
-          <a class="button secondary" href="#products">View Products</a>
+          <a class="button primary" href="/solace/">Explore Solace <span>→</span></a>
+          <a class="button secondary" href="#principles">See how we build</a>
         </div>
       </div>
-      <div class="hero-panel" aria-label="NowySystems workflow model">
-        <div class="panel-line active">Workflow first</div>
-        <div class="panel-line">Clear next action</div>
-        <div class="panel-line">Human review where it matters</div>
-        <div class="panel-line">Web-first, app-capable</div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg class="flow-field" viewBox="0 0 980 620" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="flowGold" x1="0%" x2="100%" y1="0%" y2="0%">
+              <stop offset="0%" stop-color="#8d7ad9" stop-opacity="0" />
+              <stop offset="38%" stop-color="#f2eee6" stop-opacity="0.22" />
+              <stop offset="76%" stop-color="#bfa46d" stop-opacity="0.72" />
+              <stop offset="100%" stop-color="#f2eee6" stop-opacity="1" />
+            </linearGradient>
+            <linearGradient id="flowSoft" x1="0%" x2="100%" y1="0%" y2="0%">
+              <stop offset="0%" stop-color="#f2eee6" stop-opacity="0" />
+              <stop offset="55%" stop-color="#f2eee6" stop-opacity="0.2" />
+              <stop offset="100%" stop-color="#f2eee6" stop-opacity="0.78" />
+            </linearGradient>
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <g class="flow-lines">
+            <path d="M18 60 C250 70 430 220 890 312" />
+            <path d="M0 110 C260 100 470 240 890 312" />
+            <path d="M20 155 C260 142 460 258 890 312" />
+            <path d="M0 205 C250 190 480 272 890 312" />
+            <path d="M10 255 C290 238 505 294 890 312" />
+            <path d="M0 308 C280 305 520 308 890 312" />
+            <path d="M18 360 C300 356 515 330 890 312" />
+            <path d="M0 410 C280 410 490 350 890 312" />
+            <path d="M28 462 C305 458 492 374 890 312" />
+            <path d="M0 520 C270 520 460 396 890 312" />
+            <path d="M40 590 C302 580 460 432 890 312" />
+          </g>
+          <g class="flow-lines secondary">
+            <path d="M74 38 C305 96 455 182 890 312" />
+            <path d="M84 128 C310 162 508 224 890 312" />
+            <path d="M68 236 C310 248 540 275 890 312" />
+            <path d="M68 336 C322 344 542 326 890 312" />
+            <path d="M86 446 C330 432 510 382 890 312" />
+            <path d="M76 562 C320 530 498 424 890 312" />
+          </g>
+          <g class="flow-dots">
+            <circle cx="328" cy="160" r="3" />
+            <circle cx="392" cy="220" r="2.4" />
+            <circle cx="480" cy="250" r="3.5" />
+            <circle cx="520" cy="302" r="2.2" />
+            <circle cx="610" cy="274" r="2.6" />
+            <circle cx="670" cy="338" r="3.2" />
+            <circle cx="725" cy="294" r="2.2" />
+            <circle cx="448" cy="385" r="2.8" />
+            <circle cx="555" cy="420" r="2.2" />
+            <circle cx="345" cy="486" r="2.4" />
+            <circle class="violet" cx="585" cy="188" r="3" />
+            <circle class="violet" cx="705" cy="236" r="2.5" />
+            <circle class="bone" cx="768" cy="318" r="3" />
+          </g>
+          <g class="clarity-target" filter="url(#glow)">
+            <circle cx="890" cy="312" r="64" />
+            <circle cx="890" cy="312" r="36" />
+            <circle cx="890" cy="312" r="8" />
+          </g>
+        </svg>
       </div>
     </section>
 
-    <section class="section intro-grid" aria-label="What NowySystems builds">
-      <article>
-        <h2>Healthcare support workflows</h2>
-        <p>Tools for organizing human-reviewed care context, support actions, and follow-up.</p>
-      </article>
-      <article>
-        <h2>Event operations</h2>
-        <p>Phone-first systems for guest flow, check-in, auctions, and event-day clarity.</p>
-      </article>
-      <article>
-        <h2>Decision intelligence</h2>
-        <p>Profile-aware planning for high-impact household, property, vehicle, career, and financial choices.</p>
-      </article>
-      <article>
-        <h2>Custom web systems</h2>
-        <p>Focused web tools for practical operational problems that do not fit generic software.</p>
-      </article>
+    <section class="approach" id="principles">
+      <p class="eyebrow">Our approach</p>
+      <h2>Clarity is not accidental. <span>It’s a discipline.</span></h2>
+      <div class="approach-grid">
+        <article>
+          <span class="step">01</span>
+          <h3>Understand deeply</h3>
+          <p>We start by uncovering what matters and why it matters.</p>
+        </article>
+        <article>
+          <span class="step">02</span>
+          <h3>Design with intent</h3>
+          <p>We design systems that are simple to use and built to last.</p>
+        </article>
+        <article>
+          <span class="step">03</span>
+          <h3>Build with precision</h3>
+          <p>We build with clean architecture and attention to every detail.</p>
+        </article>
+        <article>
+          <span class="step">04</span>
+          <h3>Evolve with the work</h3>
+          <p>We iterate, refine, and scale as the work evolves.</p>
+        </article>
+      </div>
     </section>
 
-    <section class="section" id="products">
+    <section class="work" id="work">
       <div class="section-heading">
-        <p class="eyebrow">Product launchpad</p>
-        <h2>Focused tools under one umbrella.</h2>
+        <p class="eyebrow">Work</p>
+        <h2>Focused systems under one umbrella.</h2>
       </div>
-
-      <div class="product-grid">
-        <article class="product-card featured">
-          <div class="status">Active MVP</div>
-          <h3>Solace</h3>
-          <p>Spiritual support coordination for care teams, facilities, churches, and volunteers.</p>
-          <a href="/solace/">Open demo</a>
-        </article>
-
-        <article class="product-card">
-          <div class="status shaping">Shaping</div>
-          <h3>Bastion Insights</h3>
-          <p>Life planning and decision intelligence for high-impact household decisions.</p>
-          <span>Coming later</span>
-        </article>
-
-        <article class="product-card">
-          <div class="status parked">Parked foundation</div>
-          <h3>Avora</h3>
-          <p>Event operations tools shaped by live check-in, auction, and guest-flow experience.</p>
-          <span>Future cycle</span>
-        </article>
-
-        <article class="product-card">
-          <div class="status existing">Existing MVP</div>
-          <h3>DonorRoute</h3>
-          <p>Funding intelligence that helps teams understand what opportunities matter and what to do next.</p>
-          <span>Private/internal</span>
-        </article>
-
-        <article class="product-card muted">
-          <div class="status incubation">Incubation</div>
-          <h3>Resonance</h3>
-          <p>A future support-workflow concept for music and care-adjacent coordination.</p>
-          <span>Research only</span>
-        </article>
+      <div class="work-grid">
+        <a href="/solace/"><strong>Solace</strong><span>Care coordination</span></a>
+        <a href="#"><strong>Bastion</strong><span>Decision intelligence</span></a>
+        <a href="#"><strong>Avora</strong><span>Event operations</span></a>
+        <a href="#"><strong>DonorRoute</strong><span>Funding workflows</span></a>
       </div>
     </section>
 
-    <section class="section principles" id="principles">
-      <div>
-        <p class="eyebrow">Operating principles</p>
-        <h2>The workflow is the product.</h2>
-      </div>
-      <ul>
-        <li>Workflow over dashboard.</li>
-        <li>Value before training.</li>
-        <li>Operational software before platform software.</li>
-        <li>Human review at the edge.</li>
-      </ul>
+    <section class="about" id="about">
+      <p class="eyebrow">NowySystems</p>
+      <h2>Software for the work generic platforms leave behind.</h2>
+      <p>
+        We build practical, polished tools around real workflows: requests, reviews,
+        decisions, handoffs, and follow-up that determine whether work actually moves.
+      </p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <span>© 2026 NowySystems</span>
-    <span>Practical workflow software.</span>
+    <a class="brand" href="/">
+      <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M13 54V10l29 32V10h9v44L22 22v32z" />
+      </svg>
+      <span>NowySystems LLC</span>
+    </a>
+    <span>Focused software for complex work.</span>
   </footer>
 </body>
 </html>
