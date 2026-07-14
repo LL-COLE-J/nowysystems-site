@@ -6,11 +6,11 @@
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    const DPR_CAP = 2;
     const GOLD = [220, 176, 101];
-    const PALE_GOLD = [246, 220, 168];
-    const IVORY = [248, 242, 230];
-    const VIOLET = [166, 126, 235];
+    const PALE = [244, 224, 184];
+    const IVORY = [247, 241, 229];
+    const VIOLET = [159, 124, 230];
+    const DPR_CAP = 2;
 
     function rng(seed) {
       let s = seed >>> 0;
@@ -20,8 +20,8 @@
       };
     }
 
-    function rgba(c, a) {
-      return `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+    function rgba(color, alpha) {
+      return `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
     }
 
     function cubicPoint(f, t) {
@@ -32,84 +32,81 @@
       };
     }
 
-    function drawFiber(target, f, opts = {}) {
-      const {
-        alpha = f.alpha,
-        width = f.width,
-        blur = 0,
-        start = f.start,
-        end = f.end,
-        dash = null,
-      } = opts;
+    function drawCurve(f, options = {}) {
+      const start = options.start ?? f.start;
+      const end = options.end ?? f.end;
+      const width = options.width ?? f.width;
+      const alpha = options.alpha ?? f.alpha;
+      const blur = options.blur ?? 0;
+      const steps = 84;
 
-      const steps = 74;
-      target.save();
-      target.beginPath();
-      target.lineCap = 'round';
-      target.lineJoin = 'round';
-      target.strokeStyle = rgba(f.color, alpha);
-      target.lineWidth = width;
-      target.shadowColor = rgba(f.color, Math.min(alpha * 1.35, 0.5));
-      target.shadowBlur = blur;
-      if (dash) target.setLineDash(dash);
+      ctx.save();
+      ctx.beginPath();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = rgba(f.color, alpha);
+      ctx.lineWidth = width;
+      ctx.shadowColor = rgba(f.color, Math.min(alpha * 1.1, .24));
+      ctx.shadowBlur = blur;
 
       for (let i = 0; i <= steps; i++) {
         const u = i / steps;
         const t = start + (end - start) * u;
         const p = cubicPoint(f, t);
         const envelope = Math.sin(Math.PI * u);
-        const wobble = Math.sin((t * f.waveFreq + f.phase) * Math.PI * 2) * f.waveAmp * envelope;
-        if (i === 0) target.moveTo(p.x, p.y + wobble);
-        else target.lineTo(p.x, p.y + wobble);
+        const drift = Math.sin((t * f.waveFreq + f.phase) * Math.PI * 2) * f.waveAmp * envelope;
+        const y = p.y + drift;
+        if (i === 0) ctx.moveTo(p.x, y);
+        else ctx.lineTo(p.x, y);
       }
 
-      target.stroke();
-      target.restore();
+      ctx.stroke();
+      ctx.restore();
     }
 
-    function drawGlowDot(target, x, y, r, color, alpha, blur = 0) {
-      target.save();
-      target.shadowColor = rgba(color, alpha);
-      target.shadowBlur = blur;
-      target.beginPath();
-      target.arc(x, y, r, 0, Math.PI * 2);
-      target.fillStyle = rgba(color, alpha);
-      target.fill();
-      target.restore();
+    function dot(x, y, r, color, alpha, blur = 0) {
+      ctx.save();
+      ctx.shadowColor = rgba(color, alpha);
+      ctx.shadowBlur = blur;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = rgba(color, alpha);
+      ctx.fill();
+      ctx.restore();
     }
 
-    function buildFibers(w, h, random, count) {
-      const focusX = w * 1.006;
-      const focusY = h * 0.515;
+    function createFibers(w, h, random) {
+      const focusX = w * 1.005;
+      const focusY = h * .515;
       const fibers = [];
+      const count = 220;
 
       for (let i = 0; i < count; i++) {
-        const normalized = i / Math.max(1, count - 1);
-        const band = normalized * 2 - 1;
-        const edgeBias = Math.sign(band) * Math.pow(Math.abs(band), 0.72);
-        const y0 = focusY + edgeBias * h * (0.72 + random() * 0.22);
-        const x0 = w * (0.18 + random() * 0.34);
-        const sweep = w * (0.25 + random() * 0.19);
-        const side = y0 < focusY ? -1 : 1;
-        const paletteRoll = random();
-        const color = paletteRoll < 0.12 ? VIOLET : paletteRoll < 0.29 ? IVORY : paletteRoll < 0.47 ? PALE_GOLD : GOLD;
+        const band = (i / (count - 1)) * 2 - 1;
+        const sign = band < 0 ? -1 : 1;
+        const spread = Math.pow(Math.abs(band), .78);
+        const colorRoll = random();
+        const color = colorRoll < .10 ? VIOLET : colorRoll < .25 ? IVORY : colorRoll < .43 ? PALE : GOLD;
+        const x0 = w * (.24 + random() * .31);
+        const y0 = focusY + sign * h * spread * (.58 + random() * .28);
+        const endEarly = random() < .34;
 
         fibers.push({
           x0,
           y0,
+          c1x: x0 + w * (.13 + random() * .16),
+          c1y: y0 + sign * h * (.015 + random() * .11),
+          c2x: focusX - w * (.18 + random() * .26),
+          c2y: focusY + sign * h * (.025 + random() * .18) * Math.max(.18, spread),
           x1: focusX,
-          y1: focusY + (random() - 0.5) * h * 0.012,
-          c1x: x0 + w * (0.15 + random() * 0.18),
-          c1y: y0 + side * h * (0.01 + random() * 0.16),
-          c2x: focusX - sweep,
-          c2y: focusY + side * h * (0.035 + random() * 0.26) * Math.min(1, Math.abs(band) + 0.16),
+          y1: focusY + (random() - .5) * h * .012,
           color,
-          alpha: 0.09 + random() * 0.42,
-          width: 0.42 + random() * 1.8,
-          start: random() < 0.44 ? random() * 0.24 : 0,
-          end: random() < 0.24 ? 0.72 + random() * 0.27 : 1,
-          waveAmp: 0.15 + random() * 1.85,
-          waveFreq: 0.7 + random() * 1.7,
+          alpha: .045 + random() * .19,
+          width: .22 + random() * .72,
+          start: random() < .58 ? random() * .28 : 0,
+          end: endEarly ? .58 + random() * .32 : .94 + random() * .06,
+          waveAmp: .15 + random() * 1.15,
+          waveFreq: .55 + random() * 1.2,
           phase: random(),
         });
       }
@@ -130,115 +127,116 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.clearRect(0, 0, w, h);
 
-        const random = rng(4271987);
-        const focusX = w * 1.006;
-        const focusY = h * 0.515;
-        const fibers = buildFibers(w, h, random, 360);
+        const random = rng(901843);
+        const focusX = w * 1.005;
+        const focusY = h * .515;
+        const fibers = createFibers(w, h, random);
 
-        const haze = ctx.createRadialGradient(w * 0.78, focusY, 0, w * 0.78, focusY, h * 0.78);
-        haze.addColorStop(0, 'rgba(184,137,72,.055)');
-        haze.addColorStop(0.38, 'rgba(86,65,45,.028)');
+        const haze = ctx.createRadialGradient(w * .82, focusY, 0, w * .82, focusY, h * .76);
+        haze.addColorStop(0, 'rgba(196,144,72,.035)');
+        haze.addColorStop(.42, 'rgba(93,68,45,.018)');
         haze.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = haze;
         ctx.fillRect(0, 0, w, h);
 
-        fibers.filter((_, i) => i % 9 === 0).forEach((f) => {
-          drawFiber(ctx, f, { alpha: 0.035 + random() * 0.045, width: 3.5 + random() * 7.5, blur: 16 + random() * 22 });
-        });
-
-        fibers.filter((_, i) => i % 3 !== 0).forEach((f) => {
-          drawFiber(ctx, f, {
-            alpha: f.alpha * (0.24 + random() * 0.35),
-            width: 0.25 + random() * 0.58,
-            blur: random() < 0.25 ? 3 : 0,
-            start: Math.min(0.58, f.start + random() * 0.13),
-            end: Math.max(0.45, f.end - random() * 0.15),
+        fibers.filter((_, i) => i % 18 === 0).forEach((f) => {
+          drawCurve(f, {
+            alpha: .014 + random() * .018,
+            width: 4 + random() * 7,
+            blur: 18 + random() * 18,
+            start: Math.min(.45, f.start + random() * .12),
+            end: Math.max(.5, f.end - random() * .08),
           });
         });
 
-        fibers.filter((_, i) => i % 3 === 0).forEach((f) => {
-          const focusBoost = f.end > 0.92 ? 1 : 0.72;
-          drawFiber(ctx, f, {
-            alpha: f.alpha * focusBoost,
-            width: f.width * (0.9 + random() * 1.55),
-            blur: random() < 0.18 ? 5 + random() * 7 : 0,
+        fibers.forEach((f, i) => {
+          if (i % 5 === 0) return;
+          drawCurve(f, {
+            alpha: f.alpha * (.52 + random() * .34),
+            width: .18 + random() * .42,
+            blur: random() < .18 ? 2 + random() * 3 : 0,
+            start: Math.min(.6, f.start + random() * .16),
+            end: Math.max(.42, f.end - random() * .16),
           });
-          if (random() < 0.34) {
-            drawFiber(ctx, f, {
-              alpha: Math.min(0.62, f.alpha * 1.12),
-              width: 0.32 + random() * 0.78,
-              blur: 1.5 + random() * 3.5,
-              start: Math.max(f.start, 0.08 + random() * 0.2),
+        });
+
+        fibers.filter((_, i) => i % 5 === 0).forEach((f) => {
+          drawCurve(f, {
+            alpha: f.alpha * (.72 + random() * .42),
+            width: .45 + random() * .92,
+            blur: random() < .13 ? 3 + random() * 5 : 0,
+          });
+
+          if (random() < .22) {
+            drawCurve(f, {
+              alpha: Math.min(.34, f.alpha * 1.2),
+              width: .18 + random() * .32,
+              blur: 1 + random() * 2,
+              start: Math.max(f.start, .2 + random() * .22),
             });
           }
         });
 
         fibers.forEach((f, i) => {
-          if (i % 2 !== 0 && random() > 0.46) return;
-          const count = 1 + Math.floor(random() * 5);
-          for (let d = 0; d < count; d++) {
-            const proximity = Math.pow(random(), 0.62);
-            const t = f.start + (f.end - f.start) * (0.16 + proximity * 0.82);
+          if (i % 3 !== 0 || random() > .68) return;
+          const count = 1 + Math.floor(random() * 3);
+          for (let j = 0; j < count; j++) {
+            const t = f.start + (f.end - f.start) * (.2 + Math.pow(random(), .66) * .74);
             const p = cubicPoint(f, t);
-            const sizeRoll = random();
-            const r = sizeRoll < 0.78 ? 0.35 + random() * 0.85 : 1.2 + random() * 2.2;
-            const glow = sizeRoll > 0.78 ? 8 + random() * 15 : random() < 0.16 ? 5 : 0;
-            drawGlowDot(ctx, p.x, p.y + (random() - 0.5) * 2.2, r, f.color, 0.28 + random() * 0.66, glow);
+            const bright = random() < .16;
+            dot(
+              p.x,
+              p.y + (random() - .5) * 1.5,
+              bright ? .85 + random() * 1.3 : .22 + random() * .58,
+              f.color,
+              bright ? .52 + random() * .32 : .2 + random() * .3,
+              bright ? 7 + random() * 11 : 0,
+            );
           }
         });
 
-        for (let i = 0; i < 90; i++) {
-          const x = w * (0.38 + random() * 0.61);
-          const y = random() * h;
-          const color = random() < 0.12 ? VIOLET : random() < 0.34 ? IVORY : GOLD;
-          const near = random() < 0.18;
-          const r = near ? 2.1 + random() * 4.6 : 0.25 + random() * 1.1;
-          drawGlowDot(ctx, x, y, r, color, near ? 0.08 + random() * 0.16 : 0.16 + random() * 0.4, near ? 10 + random() * 16 : 0);
+        for (let i = 0; i < 42; i++) {
+          const near = random() < .12;
+          const color = random() < .10 ? VIOLET : random() < .36 ? IVORY : GOLD;
+          dot(
+            w * (.44 + random() * .55),
+            random() * h,
+            near ? 1.7 + random() * 3.2 : .18 + random() * .55,
+            color,
+            near ? .05 + random() * .09 : .1 + random() * .22,
+            near ? 8 + random() * 12 : 0,
+          );
         }
 
-        const bloomX = focusX - w * 0.012;
-        const bloomY = focusY + h * 0.008;
-        const bloom = ctx.createRadialGradient(bloomX, bloomY, 0, bloomX, bloomY, h * 0.23);
-        bloom.addColorStop(0, 'rgba(255,255,255,.98)');
-        bloom.addColorStop(0.035, 'rgba(255,239,202,.72)');
-        bloom.addColorStop(0.12, 'rgba(225,177,95,.25)');
-        bloom.addColorStop(0.38, 'rgba(201,145,70,.07)');
-        bloom.addColorStop(1, 'rgba(201,145,70,0)');
+        const bloomX = focusX - w * .01;
+        const bloomY = focusY + h * .006;
+        const bloom = ctx.createRadialGradient(bloomX, bloomY, 0, bloomX, bloomY, h * .18);
+        bloom.addColorStop(0, 'rgba(255,255,255,.92)');
+        bloom.addColorStop(.035, 'rgba(255,240,208,.55)');
+        bloom.addColorStop(.13, 'rgba(224,173,92,.16)');
+        bloom.addColorStop(.42, 'rgba(196,137,63,.035)');
+        bloom.addColorStop(1, 'rgba(196,137,63,0)');
         ctx.fillStyle = bloom;
-        ctx.fillRect(bloomX - h * 0.25, bloomY - h * 0.25, h * 0.5, h * 0.5);
+        ctx.fillRect(bloomX - h * .21, bloomY - h * .21, h * .42, h * .42);
 
-        ctx.save();
-        ctx.globalCompositeOperation = 'screen';
-        const leak = ctx.createLinearGradient(focusX - w * 0.16, focusY, focusX, focusY);
-        leak.addColorStop(0, 'rgba(255,224,166,0)');
-        leak.addColorStop(0.72, 'rgba(255,229,181,.12)');
-        leak.addColorStop(1, 'rgba(255,255,255,.7)');
-        ctx.fillStyle = leak;
-        ctx.fillRect(focusX - w * 0.18, focusY - 1.2, w * 0.18, 2.4);
-        drawGlowDot(ctx, focusX - 2, focusY, 2.2, IVORY, 0.96, 18);
-        ctx.restore();
-
+        dot(focusX - 2, focusY, 1.55, IVORY, .92, 12);
         canvas.dataset.ready = 'true';
       } catch (error) {
         console.error('Hero render failed:', error);
       }
     }
 
-    let resizeFrame = 0;
-    const scheduleDraw = () => {
-      cancelAnimationFrame(resizeFrame);
-      resizeFrame = requestAnimationFrame(draw);
+    let frame = 0;
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(draw);
     };
 
     draw();
     requestAnimationFrame(draw);
-    window.addEventListener('load', draw, { once: true });
-    window.addEventListener('resize', scheduleDraw, { passive: true });
-
-    if ('ResizeObserver' in window) {
-      const resizeObserver = new ResizeObserver(scheduleDraw);
-      resizeObserver.observe(canvas.parentElement || canvas);
-    }
+    window.addEventListener('load', schedule, { once: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    if ('ResizeObserver' in window) new ResizeObserver(schedule).observe(canvas.parentElement || canvas);
   }
 
   if (document.readyState === 'loading') {
