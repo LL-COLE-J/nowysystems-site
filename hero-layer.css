@@ -1,0 +1,79 @@
+/* Hero composition layer: approved strand artwork first, UI overlays above it. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #030405;
+}
+
+.hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  background-image: url("assets/hero-strands-layer.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center right;
+  transform: none;
+  opacity: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 99% 50%, rgba(255,244,215,.22) 0 1px, rgba(223,184,112,.14) 2px, rgba(201,155,93,.05) 6%, transparent 17%),
+    linear-gradient(90deg,
+      rgba(3,4,5,1) 0%,
+      rgba(3,4,5,.99) 17%,
+      rgba(3,4,5,.93) 27%,
+      rgba(3,4,5,.68) 38%,
+      rgba(3,4,5,.20) 52%,
+      rgba(3,4,5,0) 68%);
+}
+
+.hero::before {
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.10), transparent 17%, transparent 82%, rgba(0,0,0,.18)),
+    radial-gradient(ellipse at 98% 50%, rgba(255,238,198,.13), transparent 23%);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1101px) {
+  .hero {
+    min-height: 510px;
+    height: 510px;
+    padding: 81px 0 77px 112px;
+  }
+
+  .hero-copy { width: 610px; }
+}
+
+@media (max-width: 1100px) {
+  .hero-art {
+    background-size: auto 100%;
+    background-position: 66% center;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-art {
+    inset: 235px -170px -40px -240px;
+    background-size: cover;
+    background-position: right center;
+    opacity: .82;
+  }
+
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(3,4,5,1) 0%, rgba(3,4,5,.96) 35%, rgba(3,4,5,.62) 62%, rgba(3,4,5,.10) 100%);
+  }
+}
