@@ -4,6 +4,8 @@
   isolation: isolate;
   overflow: hidden;
   background:
+    linear-gradient(90deg, rgba(3,4,5,1) 0%, rgba(3,4,5,.98) 30%, rgba(3,4,5,.66) 48%, rgba(3,4,5,.08) 72%),
+    url("assets/hero-flow.svg") right center / cover no-repeat,
     radial-gradient(ellipse at 76% 52%, rgba(115,79,38,.045), transparent 42%),
     #030405;
 }
@@ -19,7 +21,10 @@
   opacity: .94;
 }
 
-/* Readability mask: solid behind the copy, then a soft reveal into the field. */
+.hero-art[data-ready="true"] {
+  background: transparent;
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -39,7 +44,6 @@
       rgba(3,4,5,0) 70%);
 }
 
-/* Camera vignette and subtle light haze. */
 .hero::before {
   content: "";
   position: absolute;
