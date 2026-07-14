@@ -3,13 +3,16 @@
   const image = document.querySelector('.render-lock-image');
   if (!(stage instanceof HTMLElement) || !(image instanceof HTMLImageElement)) return;
 
-  const fail = (message) => {
+  const status = stage.querySelector('.render-lock-status');
+  const fail = (message, error) => {
     stage.dataset.error = 'true';
-    const status = stage.querySelector('.render-lock-status');
     if (status) status.textContent = message;
+    if (error) console.error('Render-lock load failed:', error);
   };
 
-  fetch('assets/render-lock.b64?v=1', { cache: 'force-cache' })
+  const assetUrl = 'https://raw.githubusercontent.com/LL-COLE-J/nowysystems-site/main/assets/render-lock.b64';
+
+  fetch(assetUrl, { cache: 'no-store', mode: 'cors' })
     .then((response) => {
       if (!response.ok) throw new Error(`Asset request failed: ${response.status}`);
       return response.text();
@@ -22,6 +25,8 @@
 
       image.addEventListener('load', () => {
         stage.dataset.ready = 'true';
+        stage.dataset.error = 'false';
+        if (status) status.textContent = '';
       }, { once: true });
 
       image.addEventListener('error', () => {
@@ -31,7 +36,6 @@
       image.src = `data:image/webp;base64,${clean}`;
     })
     .catch((error) => {
-      console.error('Render-lock load failed:', error);
-      fail('Approved render is unavailable.');
+      fail('Approved render is unavailable.', error);
     });
 })();
