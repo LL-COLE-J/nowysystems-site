@@ -1,4 +1,4 @@
-/* Hero composition layer: approved strand artwork first, UI overlays above it. */
+/* Detailed hero composition: canvas strands, masks, glow, then UI. */
 .hero {
   position: relative;
   isolation: isolate;
@@ -9,43 +9,45 @@
 .hero-art {
   position: absolute;
   inset: 0;
-  z-index: -4;
-  background-image: url("assets/hero-strands-layer.svg");
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: auto 100%;
-  transform: none;
-  opacity: 1;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -3;
+  z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 99.2% 50%, rgba(255,248,230,.28) 0 1px, rgba(229,192,125,.15) 2px, rgba(201,155,93,.05) 7%, transparent 19%),
+    radial-gradient(circle at 99.3% 50.5%, rgba(255,250,235,.22) 0 1px, rgba(229,192,125,.10) 3%, transparent 18%),
     linear-gradient(90deg,
       rgba(3,4,5,1) 0%,
-      rgba(3,4,5,.995) 18%,
-      rgba(3,4,5,.97) 27%,
-      rgba(3,4,5,.82) 36%,
-      rgba(3,4,5,.46) 44%,
-      rgba(3,4,5,.12) 53%,
-      rgba(3,4,5,0) 62%);
+      rgba(3,4,5,.995) 17%,
+      rgba(3,4,5,.96) 27%,
+      rgba(3,4,5,.79) 36%,
+      rgba(3,4,5,.42) 44%,
+      rgba(3,4,5,.10) 54%,
+      rgba(3,4,5,0) 65%);
 }
 
 .hero::before {
-  z-index: -2;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(0,0,0,.08), transparent 14%, transparent 84%, rgba(0,0,0,.16)),
-    radial-gradient(ellipse at 99% 50%, rgba(255,238,198,.11), transparent 21%);
+    linear-gradient(180deg, rgba(0,0,0,.10), transparent 15%, transparent 83%, rgba(0,0,0,.20)),
+    radial-gradient(ellipse at 99% 51%, rgba(255,238,198,.08), transparent 23%);
 }
 
 .hero-copy {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 @media (min-width: 1101px) {
@@ -56,33 +58,35 @@
   }
 
   .hero-copy { width: 610px; }
-
-  .hero-art {
-    left: 40%;
-    right: 0;
-    background-size: auto 100%;
-    background-position: right center;
-  }
 }
 
 @media (max-width: 1100px) {
-  .hero-art {
-    left: 28%;
-    background-size: auto 100%;
-    background-position: right center;
+  .hero::after {
+    background:
+      linear-gradient(90deg,
+        rgba(3,4,5,1) 0%,
+        rgba(3,4,5,.97) 34%,
+        rgba(3,4,5,.66) 50%,
+        rgba(3,4,5,.08) 74%,
+        transparent 100%);
   }
 }
 
 @media (max-width: 760px) {
   .hero-art {
-    inset: 235px -170px -40px -240px;
-    background-size: cover;
-    background-position: right center;
-    opacity: .82;
+    top: 225px;
+    height: calc(100% - 185px);
+    transform: scale(1.42);
+    transform-origin: 82% 52%;
+    opacity: .86;
   }
 
   .hero::after {
     background:
-      linear-gradient(180deg, rgba(3,4,5,1) 0%, rgba(3,4,5,.96) 35%, rgba(3,4,5,.62) 62%, rgba(3,4,5,.10) 100%);
+      linear-gradient(180deg,
+        rgba(3,4,5,1) 0%,
+        rgba(3,4,5,.98) 35%,
+        rgba(3,4,5,.66) 62%,
+        rgba(3,4,5,.12) 100%);
   }
 }
