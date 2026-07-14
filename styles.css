@@ -230,7 +230,7 @@ h1 span,
 .about h2 { margin-left: 0; }
 
 .work-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.9rem; }
-.work-grid a {
+.work-card {
   display: flex;
   min-height: 9rem;
   flex-direction: column;
@@ -240,7 +240,6 @@ h1 span,
   border-radius: 0.8rem;
   background: rgba(255,255,255,0.035);
 }
-.work-grid a:hover { border-color: rgba(191,164,109,0.45); background: rgba(255,255,255,0.055); }
 .work-grid strong { font-size: 1.35rem; letter-spacing: -0.04em; }
 
 .about p { max-width: 48rem; font-size: 1.2rem; }
