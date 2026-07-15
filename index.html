@@ -5,32 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NowySystems | Systems that turn complexity into clarity</title>
   <meta name="description" content="NowySystems builds focused workflow software for care, events, decisions, and operations." />
-  <link rel="stylesheet" href="render-lock.css?v=2" />
-  <script src="render-lock.js?v=2" defer></script>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="render-lock-stage" aria-label="NowySystems landing page">
-    <span class="anchor-target" id="top"></span>
-    <span class="anchor-target" id="work"></span>
-    <span class="anchor-target" id="principles"></span>
-    <span class="anchor-target" id="about"></span>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="NowySystems home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M10 52V10l18 18V11l26 26V12" />
+        <path d="M18 58V26l28 28V22" />
+      </svg>
+      <span>NowySystems</span>
+    </a>
 
-    <img
-      class="render-lock-image"
-      alt="NowySystems — systems that turn complexity into clarity"
-      width="1536"
-      height="1024"
-    />
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#principles">Principles</a>
+      <a href="#about">About</a>
+    </nav>
 
-    <div class="render-lock-status" role="status">Loading approved design</div>
+    <a class="header-cta" href="#principles">Let’s build clarity <span>→</span></a>
+  </header>
 
-    <a class="hit-area hit-logo" href="#top" aria-label="NowySystems home">Home</a>
-    <a class="hit-area hit-work" href="#work" aria-label="Work">Work</a>
-    <a class="hit-area hit-principles" href="#principles" aria-label="Principles">Principles</a>
-    <a class="hit-area hit-about" href="#about" aria-label="About">About</a>
-    <a class="hit-area hit-header-cta" href="#principles" aria-label="Let’s build clarity">Let’s build clarity</a>
-    <a class="hit-area hit-primary" href="#principles" aria-label="Explore NowySystems">Explore NowySystems</a>
-    <a class="hit-area hit-secondary" href="#principles" aria-label="See how we build">See how we build</a>
+  <main id="top">
+    <section class="hero" id="work" aria-labelledby="hero-title">
+      <img
+        class="hero-art"
+        src="assets/hero-art.png"
+        alt=""
+        width="1536"
+        height="1024"
+        aria-hidden="true"
+      />
+      <div class="hero-copy">
+        <p class="eyebrow">Focused software. Clear operations.</p>
+        <h1 id="hero-title">Systems that turn<br />complexity into <span>clarity.</span></h1>
+        <p class="hero-text">
+          NowySystems builds focused workflow software<br class="desktop-break" />
+          for care, events, decisions, and operations.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#principles">Explore NowySystems <span>→</span></a>
+          <a class="button secondary" href="#principles">See how we build</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach" id="principles" aria-labelledby="approach-title">
+      <div class="approach-heading">
+        <p class="eyebrow">Our approach</p>
+        <h2 id="approach-title">Clarity is not accidental.<br /><span>It’s a discipline.</span></h2>
+        <div class="heading-rule" aria-hidden="true"></div>
+      </div>
+
+      <div class="approach-grid">
+        <article class="approach-card">
+          <div class="step-row">
+            <span class="step">01</span>
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><circle cx="13" cy="13" r="8"/><path d="m19 19 8 8"/></svg>
+            </div>
+            <span class="connector"></span>
+          </div>
+          <h3>Understand deeply</h3>
+          <p>We start by uncovering what<br />matters and why it matters.</p>
+        </article>
+
+        <article class="approach-card">
+          <div class="step-row">
+            <span class="step">02</span>
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="m7 24 2-7L22 4l6 6-13 13-8 1Z"/><path d="m19 7 6 6"/></svg>
+            </div>
+            <span class="connector"></span>
+          </div>
+          <h3>Design with intent</h3>
+          <p>We design systems that are<br />simple to use and built to last.</p>
+        </article>
+
+        <article class="approach-card">
+          <div class="step-row">
+            <span class="step">03</span>
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="m4 10 12-6 12 6-12 6-12-6Z"/><path d="m4 16 12 6 12-6M4 22l12 6 12-6"/></svg>
+            </div>
+            <span class="connector"></span>
+          </div>
+          <h3>Build with precision</h3>
+          <p>We build with clean architecture<br />and attention to every detail.</p>
+        </article>
+
+        <article class="approach-card">
+          <div class="step-row">
+            <span class="step">04</span>
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 32 32"><path d="M5 24 13 16l5 5 9-12"/><path d="M20 9h7v7"/></svg>
+            </div>
+          </div>
+          <h3>Evolve with the work</h3>
+          <p>We iterate, refine, and scale<br />as your work evolves.</p>
+        </article>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer" id="about">
+    <div class="footer-brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M10 52V10l18 18V11l26 26V12" />
+        <path d="M18 58V26l28 28V22" />
+      </svg>
+      <span>NowySystems LLC</span>
+      <span class="footer-divider"></span>
+      <span>Focused software for complex work.</span>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#work">Work</a>
+      <a href="#principles">Principles</a>
+      <a href="#about">About</a>
+      <a href="#top">Contact</a>
+    </nav>
+  </footer>
 </body>
 </html>
