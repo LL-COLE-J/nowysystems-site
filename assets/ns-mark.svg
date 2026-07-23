@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title desc">
   <title id="title">NowySystems NS mark</title>
-  <desc id="desc">A structural ivory N interlocked with an angular gold S path.</desc>
-  <path fill="#f1eee7" d="M10 90V10h18l44 44V10h18v30H72v16L28 32v58H10Z"/>
-  <path fill="#c9a56b" d="M58 10h32v18H72L58 42l18 18h14v30H43L24 71l14-14 16 15h18v-6L40 34l18-24Z"/>
+  <desc id="desc">A precise ivory N structure interlocked with an angular gold S path.</desc>
+  <g fill="none" stroke-linecap="square" stroke-linejoin="miter" stroke-width="10">
+    <path stroke="#f1eee7" d="M16 84V16L62 62V16H84"/>
+    <path stroke="#c9a56b" d="M84 16H62V38H84V84H38V62H60"/>
+  </g>
 </svg>
