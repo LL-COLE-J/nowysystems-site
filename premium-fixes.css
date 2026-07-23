@@ -1,10 +1,10 @@
 .brand-mark {
-  width: 62px;
-  height: 62px;
+  width: 52px;
+  height: 52px;
 }
 
 .brand {
-  gap: 1rem;
+  gap: .92rem;
 }
 
 .hero-copy {
@@ -15,16 +15,22 @@ h1 {
   max-width: 16ch;
   font-size: clamp(3.05rem, 3.9vw, 4.55rem);
   text-wrap: initial;
+  color: var(--ivory);
 }
 
-.hero-title-line {
+h1 .hero-title-line {
   display: block;
   white-space: nowrap;
+  color: var(--ivory);
+}
+
+h1 .hero-accent {
+  color: var(--gold);
 }
 
 .footer-brand .brand-mark {
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
 }
 
 @media (max-width: 1100px) {
@@ -39,15 +45,15 @@ h1 {
 
 @media (max-width: 820px) {
   .brand-mark {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
   }
 
   .hero-copy {
     width: 100%;
   }
 
-  .hero-title-line {
+  h1 .hero-title-line {
     white-space: normal;
   }
 }
