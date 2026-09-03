@@ -9,6 +9,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="preload" href="../assets/nowysystems-mark-approved-exact.svg" as="image" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="storage-health.css" />
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
@@ -38,6 +39,7 @@
         <a class="nav-item active" href="#command"><span>◈</span><strong>NOVA</strong></a>
         <a class="nav-item" href="#projects"><span>▦</span><strong>Projects</strong></a>
         <a class="nav-item" href="#activity"><span>↗</span><strong>Activity</strong></a>
+        <a class="nav-item" href="#storage"><span>◫</span><strong>Storage</strong></a>
         <a class="nav-item" href="#memory"><span>◎</span><strong>Memory</strong></a>
         <a class="nav-item" href="#automations"><span>⌁</span><strong>Automations</strong></a>
       </nav>
@@ -52,7 +54,7 @@
     <main class="workspace">
       <section class="welcome" id="command">
         <p class="eyebrow">Nowy Operational Virtual Assistant</p>
-        <h1>Good morning, Cole.</h1>
+        <h1>Good afternoon, Cole.</h1>
         <p class="welcome-text">What should we work on?</p>
 
         <form class="command-card">
@@ -102,16 +104,12 @@
         <article class="panel attention-panel">
           <div class="panel-heading">
             <div><p class="eyebrow">NOVA attention</p><h2>Right now</h2></div>
-            <span class="count-badge">2</span>
+            <span class="count-badge">1</span>
           </div>
 
           <div class="attention-item">
             <span class="attention-mark gold"></span>
-            <div><strong>Execution bridge wiring</strong><p>Ubuntu server activation remains to be completed.</p></div>
-          </div>
-          <div class="attention-item">
-            <span class="attention-mark violet"></span>
-            <div><strong>Roster truth verification</strong><p>Fantasy War Room is ready for the first full NOVA-triggered smoke test.</p></div>
+            <div><strong>Execution bridge activation</strong><p>Finish the authenticated localhost service and run the first NOVA-triggered Fantasy War Room verification.</p></div>
           </div>
         </article>
 
@@ -122,19 +120,56 @@
           </div>
 
           <div class="timeline">
-            <div class="timeline-row"><span class="timeline-icon success">✓</span><div><strong>NOVA execution bridge</strong><p>Bridge code merged into NSB.</p></div><time>Verified</time></div>
-            <div class="timeline-row"><span class="timeline-icon success">✓</span><div><strong>Fantasy War Room</strong><p>Daily NFL roster truth workflow installed.</p></div><time>Verified</time></div>
-            <div class="timeline-row"><span class="timeline-icon pending">···</span><div><strong>Ubuntu server</strong><p>Credential and service wiring pending.</p></div><time>Pending</time></div>
+            <div class="timeline-row"><span class="timeline-icon success">✓</span><div><strong>NOVA off-site backup</strong><p>Lean operational backup verified in Cloudflare R2.</p></div><time>Verified</time></div>
+            <div class="timeline-row"><span class="timeline-icon success">✓</span><div><strong>Storage governance</strong><p>Hourly server and R2 guardrails activated.</p></div><time>Verified</time></div>
+            <div class="timeline-row"><span class="timeline-icon pending">···</span><div><strong>Execution bridge</strong><p>Server service activation and first end-to-end command remain.</p></div><time>Next</time></div>
           </div>
         </article>
 
         <article class="panel system-panel">
           <div class="panel-heading"><div><p class="eyebrow">System</p><h2>Health</h2></div></div>
-          <div class="health-grid">
+          <div class="health-grid storage-health-grid">
             <div><span>Server</span><strong class="good">Online</strong></div>
             <div><span>NSB</span><strong class="good">Ready</strong></div>
-            <div><span>Bridge</span><strong class="warm">Wiring</strong></div>
+            <div><span>Storage</span><strong class="good">Healthy</strong></div>
+            <div><span>R2</span><strong class="good">Verified</strong></div>
+            <div><span>Bridge</span><strong class="warm">Activation</strong></div>
             <div><span>Projects</span><strong>3</strong></div>
+          </div>
+        </article>
+
+        <article class="panel storage-panel" id="storage">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Resource governance</p><h2>Storage</h2></div>
+            <span class="project-health"><span class="state-dot"></span>Healthy</span>
+          </div>
+
+          <div class="storage-summary">
+            <div class="storage-metric">
+              <span>Server disk</span>
+              <strong>27%</strong>
+              <div><small>28 GB used · 76 GB free</small><div class="storage-meter"><i style="width:27%"></i></div></div>
+            </div>
+            <div class="storage-metric">
+              <span>NOVA brain</span>
+              <strong>22 MB</strong>
+              <small>Live operational intelligence footprint</small>
+            </div>
+            <div class="storage-metric">
+              <span>Cloudflare R2</span>
+              <strong>0.001 GB</strong>
+              <div><small>71 objects · &lt;1% of 10 GB target</small><div class="storage-meter gold"><i style="width:1%"></i></div></div>
+            </div>
+            <div class="storage-metric">
+              <span>Local recovery</span>
+              <strong>1 / 3</strong>
+              <small>Latest verified backup · 4.1 MB</small>
+            </div>
+          </div>
+
+          <div class="storage-foot">
+            <span>Latest verified snapshot · Sep 3, 2026 · 20:52 UTC</span>
+            <strong>Preserve intelligence, not duplication.</strong>
           </div>
         </article>
       </section>
