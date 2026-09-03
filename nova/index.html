@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOVA | Nowy Operational Virtual Assistant</title>
+  <meta name="theme-color" content="#050608" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="../assets/nowysystems-mark-approved-exact.svg" as="image" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="storage-health.css" />
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="nova-header">
+    <a class="brand" href="../" aria-label="NowySystems home">
+      <img class="brand-mark" src="../assets/nowysystems-mark-approved-exact.svg" alt="" width="48" height="48" />
+      <span class="nova-wordmark">NOVA</span>
+      <span class="product-label">by NowySystems</span>
+    </a>
+
+    <div class="system-state" aria-label="NOVA status">
+      <span class="state-dot"></span>
+      <span>Operational</span>
+    </div>
+
+    <button class="profile-button" type="button" aria-label="Open profile">
+      <span class="avatar">C</span>
+      <span class="profile-copy"><strong>Cole</strong><small>Owner · Admin</small></span>
+      <span aria-hidden="true">⌄</span>
+    </button>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <nav class="side-nav" aria-label="NOVA workspace navigation">
+        <a class="nav-item active" href="#command"><span>◈</span><strong>NOVA</strong></a>
+        <a class="nav-item" href="#projects"><span>▦</span><strong>Projects</strong></a>
+        <a class="nav-item" href="#activity"><span>↗</span><strong>Activity</strong></a>
+        <a class="nav-item" href="#storage"><span>◫</span><strong>Storage</strong></a>
+        <a class="nav-item" href="#memory"><span>◎</span><strong>Memory</strong></a>
+        <a class="nav-item" href="#automations"><span>⌁</span><strong>Automations</strong></a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="mini-status"><span class="state-dot"></span><span>NOVA Server</span><strong>Online</strong></div>
+        <div class="mini-status"><span class="state-dot gold"></span><span>Execution Bridge</span><strong>Ready</strong></div>
+        <div class="mini-status"><span class="state-dot violet"></span><span>NSB</span><strong>Connected</strong></div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <section class="welcome" id="command">
+        <p class="eyebrow">Nowy Operational Virtual Assistant</p>
+        <h1>Good afternoon, Cole.</h1>
+        <p class="welcome-text">What should we work on?</p>
+
+        <form class="command-card">
+          <textarea aria-label="Message NOVA" placeholder="Ask NOVA anything…" rows="3"></textarea>
+          <div class="command-toolbar">
+            <div class="command-actions">
+              <button type="button" class="icon-button" aria-label="Attach">＋</button>
+              <button type="button" class="mode-pill"><span class="pulse"></span>Auto</button>
+            </div>
+            <button type="submit" class="send-button">Send <span aria-hidden="true">↑</span></button>
+          </div>
+        </form>
+
+        <div class="quick-prompts" aria-label="Suggested commands">
+          <button type="button">What changed overnight?</button>
+          <button type="button">Check Fantasy War Room</button>
+          <button type="button">Show anything needing attention</button>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel projects-panel" id="projects">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Connected intelligence</p><h2>Projects</h2></div>
+            <button class="text-button" type="button">View all →</button>
+          </div>
+
+          <div class="project-list">
+            <div class="project-row">
+              <div class="project-icon gold-box">FW</div>
+              <div class="project-copy"><strong>Fantasy War Room</strong><span>NFL intelligence · Draft engine</span></div>
+              <div class="project-health"><span class="state-dot"></span>Active</div>
+            </div>
+            <div class="project-row">
+              <div class="project-icon violet-box">BA</div>
+              <div class="project-copy"><strong>Bastion</strong><span>Decision intelligence</span></div>
+              <div class="project-health muted"><span class="state-dot violet"></span>Connected</div>
+            </div>
+            <div class="project-row">
+              <div class="project-icon dark-box">NS</div>
+              <div class="project-copy"><strong>NowySystems</strong><span>Operations · Platform</span></div>
+              <div class="project-health muted"><span class="state-dot gold"></span>Core</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel attention-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">NOVA attention</p><h2>Right now</h2></div>
+            <span class="count-badge">1</span>
+          </div>
+
+          <div class="attention-item">
+            <span class="attention-mark gold"></span>
+            <div><strong>Execution bridge activation</strong><p>Finish the authenticated localhost service and run the first NOVA-triggered Fantasy War Room verification.</p></div>
+          </div>
+        </article>
+
+        <article class="panel activity-panel" id="activity">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Recent execution</p><h2>Activity</h2></div>
+            <button class="text-button" type="button">Audit log →</button>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-row"><span class="timeline-icon success">✓</span><div><strong>NOVA off-site backup</strong><p>Lean operational backup verified in Cloudflare R2.</p></div><time>Verified</time></div>
+            <div class="timeline-row"><span class="timeline-icon success">✓</span><div><strong>Storage governance</strong><p>Hourly server and R2 guardrails activated.</p></div><time>Verified</time></div>
+            <div class="timeline-row"><span class="timeline-icon pending">···</span><div><strong>Execution bridge</strong><p>Server service activation and first end-to-end command remain.</p></div><time>Next</time></div>
+          </div>
+        </article>
+
+        <article class="panel system-panel">
+          <div class="panel-heading"><div><p class="eyebrow">System</p><h2>Health</h2></div></div>
+          <div class="health-grid storage-health-grid">
+            <div><span>Server</span><strong class="good">Online</strong></div>
+            <div><span>NSB</span><strong class="good">Ready</strong></div>
+            <div><span>Storage</span><strong class="good">Healthy</strong></div>
+            <div><span>R2</span><strong class="good">Verified</strong></div>
+            <div><span>Bridge</span><strong class="warm">Activation</strong></div>
+            <div><span>Projects</span><strong>3</strong></div>
+          </div>
+        </article>
+
+        <article class="panel storage-panel" id="storage">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Resource governance</p><h2>Storage</h2></div>
+            <span class="project-health"><span class="state-dot"></span>Healthy</span>
+          </div>
+
+          <div class="storage-summary">
+            <div class="storage-metric">
+              <span>Server disk</span>
+              <strong>27%</strong>
+              <div><small>28 GB used · 76 GB free</small><div class="storage-meter"><i style="width:27%"></i></div></div>
+            </div>
+            <div class="storage-metric">
+              <span>NOVA brain</span>
+              <strong>22 MB</strong>
+              <small>Live operational intelligence footprint</small>
+            </div>
+            <div class="storage-metric">
+              <span>Cloudflare R2</span>
+              <strong>0.001 GB</strong>
+              <div><small>71 objects · &lt;1% of 10 GB target</small><div class="storage-meter gold"><i style="width:1%"></i></div></div>
+            </div>
+            <div class="storage-metric">
+              <span>Local recovery</span>
+              <strong>1 / 3</strong>
+              <small>Latest verified backup · 4.1 MB</small>
+            </div>
+          </div>
+
+          <div class="storage-foot">
+            <span>Latest verified snapshot · Sep 3, 2026 · 20:52 UTC</span>
+            <strong>Preserve intelligence, not duplication.</strong>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
